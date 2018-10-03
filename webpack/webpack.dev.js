@@ -4,6 +4,7 @@ const webpackMerge = require('webpack-merge');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -85,6 +86,10 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         new WebpackNotifierPlugin({
             title: 'JHipster',
             contentImage: path.join(__dirname, 'logo-jhipster.png')
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerHost: 'localhost',
+            analyzerPort: 4200
         })
     ]
 });
